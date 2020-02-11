@@ -254,19 +254,3 @@ ${var.nomad_client_java_install ? data.template_file.java_install.rendered : "ec
 EOF
 }
   
-  resource "aws_instance" "appServer" {
-
-  iam_instance_profile = "${var.instance_profile != "" ? var.instance_profile : module.consul_auto_join_instance_role.instance_profile_id}"
-  ami                  = "${var.image_id != "" ? var.image_id : element(concat(data.aws_ami.hashistack.*.id, list("")), 0)}" # TODO: Workaround for issue #11210
-  instance_type        = "${var.instance_type}"
-  key_name             = "${var.ssh_key_name != "" ? var.ssh_key_name : module.ssh_keypair_aws.name}"
-  user_data            = "${element(data.template_file.bastion_init.*.rendered, count.index)}"
-  subnet_id            = "${element(aws_subnet.public.*.id, count.index)}"
-
-  vpc_security_group_ids = [
-    "${module.bastion_consul_client_sg.consul_client_sg_id}",
-    "${element(concat(aws_security_group.bastion.*.id, list("")), 0)}", # TODO: Workaround for issue #11210
-  ]
-
-  tags = "${merge(var.tags, map("Name", format("%s-appServer-%d", var.name, count.index + 1), "Consul-Auto-Join", var.name))}"
-}
