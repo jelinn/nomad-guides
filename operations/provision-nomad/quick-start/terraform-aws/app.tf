@@ -20,7 +20,7 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_instance" "web" {
   key_name  = "${module.network_aws.ssh_key_name}"
-  subnet_id     = "${module.network_aws.subnet_private_ids}"
+  subnet_id     = "subnet-05c2f0182ed9c2ff4"
   ami           = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.micro"
 }
