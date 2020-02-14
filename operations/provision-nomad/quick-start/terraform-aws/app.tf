@@ -33,7 +33,7 @@ resource "aws_instance" "client2" {
   }
 }
 output "client1_ip_addr" {
-  value = aws_instance.server.public_ip
+  value = aws_instance.client1.public_ip
 }
 output "client2_ip_addr" {
   value = aws_instance.client2.public_ip
