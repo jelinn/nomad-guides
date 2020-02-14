@@ -17,8 +17,8 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "client1" {
   ami           = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.micro"
-  key_name             = "${var.ssh_key_name != "" ? var.ssh_key_name : module.ssh_keypair_aws.name}"
-  subnet_id            = "${element(aws_subnet.public.*.id, count.index)}"
+  key_name             = "jlinn-dev-useast2"
+  subnet_id            = "subnet-0dbfc8b50e2e3f44e"
   tags = {
     Name = "jlinn-nomad-demo-consul-node"
   }
@@ -26,8 +26,8 @@ resource "aws_instance" "client1" {
 resource "aws_instance" "client2" {
   ami           = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.nano"
-  key_name             = "${var.ssh_key_name != "" ? var.ssh_key_name : module.ssh_keypair_aws.name}"
-  subnet_id            = "${element(aws_subnet.public.*.id, count.index)}"
+  key_name             = "jlinn-dev-useast2"
+  subnet_id            = "subnet-0dbfc8b50e2e3f44e"
   tags = {
     Name = "jlinn-nomad-demo-consul-node"
   }
