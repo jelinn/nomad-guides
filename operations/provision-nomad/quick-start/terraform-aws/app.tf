@@ -17,8 +17,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_security_group" "testenv_allow_all_DO_NOT_PROD" {
   name        = "allow_all_dev"
   description = "Allow all-Dev"
-  #vpc_id      = "${aws_vpc.main.id}"
-
+  vpc_id      = "${module.network_aws.vpc_id}"
   ingress {
     # TLS (change to whatever ports you need)
     from_port   = 0
@@ -42,7 +41,7 @@ resource "aws_instance" "client1" {
   ami           = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.micro"
   key_name             = "jlinn-dev-useast2"
-  vpc_id = "${module.network_aws.vpc_id}"
+  #vpc_id = "${module.network_aws.vpc_id}"
 
   vpc_security_group_ids = ["${aws_security_group.testenv_allow_all_DO_NOT_PROD.id}"]
   user_data = <<-EOT
@@ -65,7 +64,7 @@ resource "aws_instance" "client2" {
   instance_type = "t2.nano"
   key_name             = "jlinn-dev-useast2"
   vpc_security_group_ids = ["${aws_security_group.testenv_allow_all_DO_NOT_PROD.id}"]
-  vpc_id = "${module.network_aws.vpc_id}"
+  #vpc_id = "${module.network_aws.vpc_id}"
   user_data = <<-EOT
     #! /bin/bash
     sudo apt-get update
