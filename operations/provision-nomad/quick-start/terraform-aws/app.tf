@@ -18,7 +18,7 @@ resource "aws_instance" "client1" {
   ami           = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.micro"
   key_name             = "jlinn-dev-useast2"
-  subnet_id            = "subnet-0dbfc8b50e2e3f44e"
+ 
   user_data = <<-EOT
     #! /bin/bash
     sudo apt-get update
@@ -36,7 +36,8 @@ resource "aws_instance" "client2" {
   ami           = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.nano"
   key_name             = "jlinn-dev-useast2"
-   user_data = <<-EOT
+
+  user_data = <<-EOT
     #! /bin/bash
     sudo apt-get update
     sudo apt-get install -y unzip python3 python3-pip
