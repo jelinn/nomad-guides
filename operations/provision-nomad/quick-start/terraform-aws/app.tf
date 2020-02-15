@@ -19,6 +19,15 @@ resource "aws_instance" "client1" {
   instance_type = "t2.micro"
   key_name             = "jlinn-dev-useast2"
   subnet_id            = "subnet-0dbfc8b50e2e3f44e"
+  user_data = << EOF
+		#! /bin/bash
+    sudo apt-get update
+    sudo apt-get install -y unzip python3 python3-pip
+    wget https://releases.hashicorp.com/consul/1.7.0/consul_1.7.0_linux_amd64.zip
+		unzip consul_1.7.0_linux_amd64.zip
+    mkdir /etc/consul
+	EOF
+  
   tags = {
     Name = "jlinn-nomad-demo-consul-node"
   }
@@ -28,6 +37,14 @@ resource "aws_instance" "client2" {
   instance_type = "t2.nano"
   key_name             = "jlinn-dev-useast2"
   subnet_id            = "subnet-0dbfc8b50e2e3f44e"
+  user_data = << EOF
+		#! /bin/bash
+    sudo apt-get update
+    sudo apt-get install -y unzip python3 python3-pip
+    wget https://releases.hashicorp.com/consul/1.7.0/consul_1.7.0_linux_amd64.zip
+		unzip consul_1.7.0_linux_amd64.zip
+    mkdir /etc/consul
+	EOF
   tags = {
     Name = "jlinn-nomad-demo-consul-node"
   }
