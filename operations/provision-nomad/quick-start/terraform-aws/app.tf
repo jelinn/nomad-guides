@@ -15,9 +15,9 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_security_group" "testenv_allow_all_DO_NOT_PROD" {
-  name        = "allow_tls"
-  description = "Allow TLS inbound traffic"
-  vpc_id      = "${aws_vpc.main.id}"
+  name        = "allow_all_dev"
+  description = "Allow all-Dev"
+  #vpc_id      = "${aws_vpc.main.id}"
 
   ingress {
     # TLS (change to whatever ports you need)
