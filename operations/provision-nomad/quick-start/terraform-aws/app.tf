@@ -43,7 +43,7 @@ resource "aws_instance" "client1" {
   ami           = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.micro"
   key_name             = "jlinn-dev-useast2"
-  vpc_security_group_ids = [${aws_security_group.testenv_allow_all_DO_NOT_PROD.id}]
+  vpc_security_group_ids = ["${aws_security_group.testenv_allow_all_DO_NOT_PROD.id}"]
   user_data = <<-EOT
     #! /bin/bash
     sudo apt-get update
@@ -62,7 +62,7 @@ resource "aws_instance" "client2" {
   ami           = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.nano"
   key_name             = "jlinn-dev-useast2"
-  vpc_security_group_ids = [${aws_security_group.testenv_allow_all_DO_NOT_PROD.id}]
+  vpc_security_group_ids = ["${aws_security_group.testenv_allow_all_DO_NOT_PROD.id}"]
 
   user_data = <<-EOT
     #! /bin/bash
