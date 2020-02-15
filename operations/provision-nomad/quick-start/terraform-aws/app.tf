@@ -48,7 +48,8 @@ resource "aws_instance" "client1" {
     sudo apt-get update
     sudo apt-get install -y unzip python3 python3-pip
     wget https://releases.hashicorp.com/consul/1.7.0/consul_1.7.0_linux_amd64.zip
-		unzip consul_1.7.0_linux_amd64.zip
+    unzip consul_1.7.0_linux_amd64.zip
+    mv consul /usr/bin
     mkdir /etc/consul
   EOT
 	
@@ -68,7 +69,8 @@ resource "aws_instance" "client2" {
     sudo apt-get update
     sudo apt-get install -y unzip python3 python3-pip
     wget https://releases.hashicorp.com/consul/1.7.0/consul_1.7.0_linux_amd64.zip
-		unzip consul_1.7.0_linux_amd64.zip
+    unzip consul_1.7.0_linux_amd64.zip
+    mv consul /usr/bin
     mkdir /etc/consul
   EOT
   tags = {
