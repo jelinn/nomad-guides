@@ -17,7 +17,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_security_group" "testenv_allow_all_DO_NOT_PROD" {
   name        = "allow_all_dev"
   description = "Allow all-Dev"
-  #vpc_id      = "vpc-063cec4163b7eaf6c"
+  vpc_id      = "vpc-063cec4163b7eaf6c"
   ingress {
     # TLS (change to whatever ports you need)
     from_port   = 0
