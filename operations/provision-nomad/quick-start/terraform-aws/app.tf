@@ -41,7 +41,7 @@ resource "aws_instance" "client1" {
   ami           = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.micro"
   key_name             = "jlinn-dev-useast2"
-  #vpc_id = "${module.network_aws.vpc_id}"
+  subnet_id = "subnet-09fd8b4f7caebf0f1"
 
   vpc_security_group_ids = ["${aws_security_group.testenv_allow_all_DO_NOT_PROD.id}"]
   user_data = <<-EOT
@@ -62,6 +62,7 @@ resource "aws_instance" "client1" {
 resource "aws_instance" "client2" {
   ami           = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.nano"
+  subnet_id = "subnet-09fd8b4f7caebf0f1"
   key_name             = "jlinn-dev-useast2"
   vpc_security_group_ids = ["${aws_security_group.testenv_allow_all_DO_NOT_PROD.id}"]
   #vpc_id = "${module.network_aws.vpc_id}"
